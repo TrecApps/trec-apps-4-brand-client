@@ -1,0 +1,15 @@
+<lib-nav-bar 
+    [navOptions]="navOptions" 
+    (onNav)="onNavigate($event)" 
+    (onLoginRequestEmitter)="prepLogin()"
+    [basicImageUrl]="'https://test.trecapps.com/Images-api/Images/profile/'"
+>
+    
+    <app-brand-searcher (brandInfoSelected)="onBrandSelected($event)"></app-brand-searcher>
+
+    <!-- <profile-ext class="flex-and-center" *ngIf="authService.tcUser">
+        <p><b>Credibility: </b> {{ authService.tcUser.credibilityRating }}</p>
+    </profile-ext> -->
+</lib-nav-bar>
+
+<div class="buffer-bar"></div>

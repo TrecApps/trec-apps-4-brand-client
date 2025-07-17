@@ -23,6 +23,7 @@
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "@tc/tc-ngx-general": "^0.3.29",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
