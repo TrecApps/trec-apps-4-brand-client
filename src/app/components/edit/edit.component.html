@@ -1,0 +1,135 @@
+<div *ngIf="resourceService.editEntry" style="padding-top: 10px;">
+
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" [(ngModel)]="resourceService.editEntry.name">
+    </div>
+
+    <div class="form-group">
+        <label>Primary Type</label>
+        <select class="form-select" [(ngModel)]="resourceService.editEntry.primaryType">
+            <option value="">(No Type)</option>
+            <option *ngFor="let entry of brandTypes" [value]="entry">{{entry}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Secondary Type</label>
+        <select class="form-select" [(ngModel)]="resourceService.editEntry.secondaryType">
+            <option value="">(No Type)</option>
+            <option *ngFor="let entry of brandTypes" [value]="entry">{{entry}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tertiary Type</label>
+        <select class="form-select" [(ngModel)]="resourceService.editEntry.tertiaryType">
+            <option value="">(No Type)</option>
+            <option *ngFor="let entry of brandTypes" [value]="entry">{{entry}}</option>
+        </select>
+    </div>
+
+    <div class="rs-image-button-holder">
+        <input style="display: none" type="file" (change)="selectImage($event)" accept="image/png, image/gif, image/jpeg, image/webp, image/svg" #imageInput>
+        <button class="btn btn-info" (click)="imageInput.click()">Select Image</button>
+        <button *ngIf="resourceService.editEntry.metaData.profileBase64" class="btn btn-danger" (click)="removeImage()">Remove Image</button>
+    </div>
+    <div class="rs-metadata-container-edit">
+        <div class="rs-image-container-edit">
+        
+            <div *ngIf="resourceService.editEntry.metaData.profileBase64" class="rs-image-holder-edit">
+                <img [src]="resourceService.editEntry.metaData.profileBase64">
+            </div>
+            <div class="rs-image-desc-holder">
+                <textarea class="form-control" [(ngModel)]="resourceService.editEntry.metaData.profileDesc"></textarea>
+            </div>
+
+        </div>
+
+
+        <div class="rs-table-holder-edit">
+            <table>
+                <tr *ngFor="let entry of metaData  | keyvalue">
+                    <td>{{entry.key}}</td>
+                    <td>{{entry.value}}</td>
+                    <td><button class="btn btn-danger" (click)="removeMetaDataEntry(entry.key)">Remove</button></td>
+                </tr>
+                <tr>
+                    <td><input class="form-control" [(ngModel)]="newKey"></td>
+                    <td><input class="form-control" [(ngModel)]="newVal"></td>
+                    <td>
+                        <button *ngIf="newKey && newVal" class="btn btn-light" (click)="addEntry()">Add Entry</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+    <hr>
+
+    <lib-markdown-editor #editor1 [(content)]="resourceService.editEntry.contents"></lib-markdown-editor>
+
+    <div style="display: flex;flex-direction: row;justify-content: center; align-items: center;">
+        <button class="btn btn-primary" (click)="onSubmitNew()">Submit Resource</button>
+    </div>
+
+</div>
+
+<div *ngIf="!resourceService.editEntry && resourceService.contents && resourceService.brandEntry && resourceService.metadata">
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" [(ngModel)]="resourceService.brandEntry.name">
+    </div>
+
+    <button class="btn btn-primary" (click)="updateName()">Update Name</button>
+
+    <hr>
+
+    <div class="rs-image-button-holder">
+        <input style="display: none" type="file" (change)="selectImage($event)" accept="image/png, image/gif, image/jpeg, image/webp, image/svg" #imageInput>
+        <button class="btn btn-info" (click)="imageInput.click()">Select Image</button>
+        <button *ngIf="resourceService.metadata.profileBase64" class="btn btn-danger" (click)="removeImage()">Remove Image</button>
+    </div>
+
+    <div class="rs-metadata-container-edit">
+        <div class="rs-image-container-edit"
+            *ngIf="resourceService.metadata.profileBase64">
+        
+            <div class="rs-image-holder-edit">
+                <img [src]="resourceService.metadata.profileBase64">
+            </div>
+            <div class="rs-image-desc-holder">
+                <textarea class="form-control" [(ngModel)]="resourceService.metadata.profileDesc"></textarea>
+            </div>
+
+        </div>
+
+
+        <div class="rs-table-holder-edit">
+            <table>
+                <tr *ngFor="let entry of metaData  | keyvalue">
+                    <td>{{entry.key}}</td>
+                    <td>{{entry.value}}</td>
+                    <td><button class="btn btn-danger" (click)="removeMetaDataEntry(entry.key)">Remove</button></td>
+                </tr>
+                <tr>
+                    <td><input class="form-control" [(ngModel)]="newKey"></td>
+                    <td><input class="form-control" [(ngModel)]="newVal"></td>
+                    <td>
+                        <button *ngIf="newKey && newVal" class="btn btn-light" (click)="addEntry()">Add Entry</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    <button class="btn btn-primary" (click)="updateMetadata()">Update Image and Table</button>
+
+    <hr>
+
+    <button class="btn btn-primary" (click)="updateContents()">Update Article</button>
+
+    <lib-markdown-editor #editor2  [(content)]="resourceService.contents"></lib-markdown-editor>
+
+</div>

@@ -1,0 +1,26 @@
+{
+    "/User-api/**": {
+      "target": "https://test.trecapps.com",
+      "secure": true,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/Falsehood-api/**" : {
+      "target": "https://test.trecapps.com",
+      "secure": true,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/Images-api/**" : {
+      "target": "https://test.trecapps.com",
+      "secure": true,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/Brands-api/**" : {
+      "target": "https://test.trecapps.com",
+      "secure": true,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }

@@ -1,0 +1,56 @@
+<h2>{{ resourceService.brandEntry?.name }}</h2>
+
+<button *ngIf="resourceService.hasPermission" class="btn btn-info" (click)="setEditingMode()">Edit</button>
+
+<button 
+    *ngIf="resourceService.hasPermission && resourceService.brandEntry?.reviewStage == 'SUBMITTED'" 
+    class="btn btn-info" 
+    (click)="setReviewMode(true)">Review</button>
+
+<hr>
+
+<div *ngIf="showReview && resourceService.brandEntry?.id" class="rs-review-pane">
+    <div class="form-check">
+        <label class="form-check-label">Approve</label>
+        <input type="checkbox" class="form-check-input" [(ngModel)]="isApproving">
+    </div>
+    <div class="form-group">
+        <label>Comment</label>
+        <input type="text" class="form-control" [(ngModel)]="reviewComment">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-warning" (click)="setReviewMode(false)">Cancel</button>
+        <button class="btn btn-primary" (click)="submitReview()">Submit</button>
+    </div>
+</div>
+
+<div class="rs-article-container">
+
+
+
+
+    <div class="rs-metadata-container">
+        <div class="rs-image-container" *ngIf="resourceService.metadata?.profileBase64">
+            <div class="rs-image-holder">
+                <img [src]="resourceService.metadata?.profileBase64">
+            </div>
+            <div *ngIf="resourceService.metadata?.profileDesc" class="rs-image-desc-holder">
+                <p class="rs-image-desc">{{resourceService.metadata?.profileDesc}}</p>
+            </div>
+        </div>
+
+        <div class="rs-metadata-holder rs-table-holder">
+            <table>
+                <tr *ngFor="let entry of resourceService.metadata?.metadata  | keyvalue">
+                    <td>{{entry.key}}</td>
+                    <td>{{entry.value}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="rs-article-contents " [innerHTML]="resourceService.contents | markdown"></div>
+</div>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService, NavBarComponent, NavClickDetails, NavOption, NavOptionShow } from '@tc/tc-ngx-general';
 import { BrandSearcherComponent } from '../brand-searcher/brand-searcher.component';
 import { Router } from '@angular/router';
+import { BrandInfoImg } from '../../model/BrandInfo';
 
 
 @Component({
@@ -20,21 +21,21 @@ export class TopBarComponent {
     this.authService = authService;
 
     this.navOptions = [
-      {
-        displayText: 'Welcome',
-        title: 'Welcome',
-        showOption: NavOptionShow.BASIC_DESKTOP
-      },
-      {
-        displayText: 'Factchecks',
-        title: 'factchecks-search',
-        showOption: NavOptionShow.BASIC_DESKTOP
-      },
-      {
-        displayText: 'Falsehoods',
-        title: 'falsehoods-search',
-        showOption: NavOptionShow.BASIC_DESKTOP
-      }
+      // {
+      //   displayText: 'Welcome',
+      //   title: 'Welcome',
+      //   showOption: NavOptionShow.BASIC_DESKTOP
+      // },
+      // {
+      //   displayText: 'Factchecks',
+      //   title: 'factchecks-search',
+      //   showOption: NavOptionShow.BASIC_DESKTOP
+      // },
+      // {
+      //   displayText: 'Falsehoods',
+      //   title: 'falsehoods-search',
+      //   showOption: NavOptionShow.BASIC_DESKTOP
+      // }
       // ,
       // {
       //   displayText: 'Welcome',
@@ -52,5 +53,13 @@ export class TopBarComponent {
 
   prepLogin(){
     this.router.navigateByUrl('/Logon')
+  }
+
+  onBrandSelected(brand: BrandInfoImg){
+    this.router.navigate(['/article'], {
+      queryParams: {
+        id: brand.brandInfo.id
+      }
+    })
   }
 }
