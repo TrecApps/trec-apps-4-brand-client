@@ -2,3 +2,26 @@
 @import '../node_modules/@tc/tc-ngx-general/assets/tc-styles.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@media (max-width:641px) {
+    .buffer-bar {
+        height: 55px;
+    }
+
+    .bottom-bar {
+        display:block;
+        height: 50px; 
+        width: 100%;
+    }
+}
+
+@media (min-width: 641px) {
+    .buffer-bar {
+        height: 55px;
+    }
+
+    .bottom-bar {
+        display: none;
+    }
+}

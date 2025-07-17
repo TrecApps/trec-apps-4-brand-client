@@ -101,28 +101,33 @@ export class ResourceService {
   /// Search Functionality
   ///
 
-  searchByName(name: string){
+  searchByName(name: string): Observable<BrandInfoImg[]>{
     let params = new HttpParams().append("all", this.hasPermission);
 
-    this.client.get<BrandInfoImg[]>(`${environment.RESOURCE_URL}search/resources/${name}`, {
+    let observable: Observable<BrandInfoImg[]> = this.client.get<BrandInfoImg[]>(`${environment.RESOURCE_URL}search/resources/${name}`, {
       params, headers: this.authService.getHttpHeaders2(HttpContentType.NONE)
-    }).subscribe({
+    });
+    observable.subscribe({
       next: (results: BrandInfoImg[]) => {
         this.entryList = results;
       }
     })
+
+    return observable;
   }
 
-  searchByNameAndType(name:string, type: string){
+  searchByNameAndType(name:string, type: string): Observable<BrandInfoImg[]>{
     let params = new HttpParams().append("name", name);
 
-    this.client.get<BrandInfoImg[]>(`${environment.RESOURCE_URL}search/resourceByType/${type}`, {
+    let observable: Observable<BrandInfoImg[]> = this.client.get<BrandInfoImg[]>(`${environment.RESOURCE_URL}search/resourceByType/${type}`, {
       params
-    }).subscribe({
+    });
+    observable.subscribe({
       next: (results: BrandInfoImg[]) => {
         this.entryList = results;
       }
-    })
+    });
+    return observable;
   }
 
   getList(){

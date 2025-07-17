@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AuthService, NavBarComponent, NavClickDetails, NavOption, NavOptionShow } from '@tc/tc-ngx-general';
+import { Component, OnDestroy } from '@angular/core';
+import { AuthService, NavBarComponent, NavClickDetails, NavOption, NavOptionShow, ProfileItemGroup } from '@tc/tc-ngx-general';
 import { BrandSearcherComponent } from '../brand-searcher/brand-searcher.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Route, Router } from '@angular/router';
 import { BrandInfoImg } from '../../model/BrandInfo';
+import { UrlService } from '../../services/url.service';
+import { Subscription } from 'rxjs';
 
+interface LooseObject {
+    [key: string]: any
+}
 
 @Component({
   selector: 'app-top-bar',
@@ -12,12 +17,31 @@ import { BrandInfoImg } from '../../model/BrandInfo';
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css'
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnDestroy{
   authService: AuthService;
 
   navOptions: NavOption[];
 
-  constructor(authService: AuthService, private router:Router){
+  profileItemGroups: ProfileItemGroup[] = [
+    {
+      itemList: [
+        {
+          item: 'logout',
+          displayItem: 'Logout'
+        }
+      ]
+    }
+  ]
+
+  onProfilePanelSelect(item:string) {
+    if(item == 'logout'){
+      this.authService.logout(undefined);
+    }
+  }
+
+  routeSubscription: Subscription;
+
+  constructor(authService: AuthService, private router:Router, private route: ActivatedRoute, private urlService: UrlService){
     this.authService = authService;
 
     this.navOptions = [
@@ -43,6 +67,21 @@ export class TopBarComponent {
       //   showOption: NavOptionShow.BASIC_DESKTOP
       // }
     ]
+
+    this.routeSubscription = this.route.queryParamMap.subscribe((value: ParamMap) => {
+      let params: LooseObject = {};
+      for(let key of value.keys){
+        params[key] = value.get(key)
+      }
+
+      this.urlService.url='/article';
+      this.urlService.params = params;
+      
+    })
+    
+  }
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
   }
 
 
@@ -52,7 +91,10 @@ export class TopBarComponent {
   }
 
   prepLogin(){
+
     this.router.navigateByUrl('/Logon')
+
+    
   }
 
   onBrandSelected(brand: BrandInfoImg){

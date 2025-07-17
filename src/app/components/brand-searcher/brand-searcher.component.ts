@@ -61,11 +61,11 @@ export class BrandSearcherComponent {
 
   onInputChange() {
 
-    if(!this.type)return;
+    //if(!this.type)return;
 
     let tempName = this.name.trim();
     if(tempName){
-      let observable: Observable<BrandInfoImg[]> = this.brandGetService.searchByNameAndType(tempName, this.type);
+      let observable: Observable<BrandInfoImg[]> = this.brandGetService.searchByName(tempName);
        observable.subscribe({
         next: (brands: BrandInfoImg[]) => this.entries = brands
        });

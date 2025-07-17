@@ -1,0 +1,88 @@
+
+
+.rs-image-button-holder {
+    background-color: black;
+    min-height: 100px;
+    width:100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.rs-metadata-container-edit {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    background-color: black;
+}
+
+.rs-image-container-edit {
+    
+    border-right: solid 1px white;
+    min-width: 320px;
+    flex-grow: 1;
+    min-height: 320px;
+    background-color: black;
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.rs-image-holder-edit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    min-height: 320px;
+    flex-grow: 1;
+}
+
+.rs-image-holder-edit img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.rs-image-desc-holder {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    padding: 5px;
+}
+
+.rs-table-holder-edit {
+    min-width: 320px;
+    flex-grow: 1;
+}
+
+.rs-table-holder-edit table {
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eee;
+}
+
+.rs-table-holder-edit td, .rs-table-holder th {
+    border: solid 1px #aaa;
+    padding: 5px;
+}
+
+.rs-table-holder-edit tr:nth-child(even){
+    background-color: #eee;
+}
+
+.rs-table-holder-edit tr:hover {
+    background-color: #aaa;
+}
+
+.rs-table-holder-edit th {
+    padding: 10px;
+    background-color: #ccc;
+}

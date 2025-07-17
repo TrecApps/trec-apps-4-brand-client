@@ -4,10 +4,11 @@ import { BRAND_RESOURCE_TYPE } from '../../model/BrandInfo';
 import { ResourceService } from '../../services/resource.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TopBarComponent } from "../top-bar/top-bar.component";
 
 @Component({
   selector: 'app-edit',
-  imports: [CommonModule, FormsModule, MarkdownEditorComponent],
+  imports: [CommonModule, FormsModule, MarkdownEditorComponent, TopBarComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css'
 })

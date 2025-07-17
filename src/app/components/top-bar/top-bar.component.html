@@ -3,6 +3,8 @@
     (onNav)="onNavigate($event)" 
     (onLoginRequestEmitter)="prepLogin()"
     [basicImageUrl]="'https://test.trecapps.com/Images-api/Images/profile/'"
+    [items]="profileItemGroups"
+    (onProfileItemClicked)="onProfilePanelSelect($event)"
 >
     
     <app-brand-searcher (brandInfoSelected)="onBrandSelected($event)"></app-brand-searcher>

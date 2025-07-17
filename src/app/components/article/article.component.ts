@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { MarkdownPipe } from '@tc/tc-ngx-general';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TopBarComponent } from "../top-bar/top-bar.component";
 
 @Component({
   selector: 'app-article',
-  imports: [CommonModule, FormsModule, MarkdownPipe],
+  imports: [CommonModule, FormsModule, MarkdownPipe, TopBarComponent],
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
