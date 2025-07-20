@@ -14,4 +14,22 @@
     </profile-ext> -->
 </lib-nav-bar>
 
+<app-popup *ngIf="showStylePopup" (onClose)="showStylePopup = false">
+    <app-color-panel (onColorSelect)="onColorSelect($event)"
+                [colors]="colorList"></app-color-panel>
+
+    <div class="form-group">
+        <input 
+            type="checkbox" 
+            class="form-check-input" 
+            (change)="onUseDarkChecked($event)" 
+        >
+        <label class="form-check-label">Use Dark mode</label>
+
+        <div class="element-item" [ngClass]="'element-item-' + ss.style" style="height: 10px"></div>
+        <button *ngIf="authService.hasActiveTokens()" [disabled]="!colorChanged" class="btn btn-primary" (click)="updateStyle()"> Persist Style</button>
+    </div>
+
+</app-popup>
+
 <div class="buffer-bar"></div>
