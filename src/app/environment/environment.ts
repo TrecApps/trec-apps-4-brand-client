@@ -16,5 +16,5 @@ export const environment = {
 
 
 
-    app_name: 'Trec-Apps-Falsehoods-Service'
+    app_name: 'Trec-Apps-Brands-Service'
 }
