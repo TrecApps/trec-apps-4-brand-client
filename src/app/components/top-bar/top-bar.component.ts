@@ -56,8 +56,12 @@ export class TopBarComponent implements OnDestroy{
     if(this.styleUpdating) return;
       this.styleUpdating = true;
 
+    let targetStyle = this.ss.style;
+    if(targetStyle.startsWith('dark-'))
+      targetStyle = targetStyle.substring(5);
+
     this.client.patch<ResponseObj>(`${environment.USER_SERVICE_URL}Users/styles`, {
-        style: this.ss.style,
+        style: targetStyle,
         useDark: this.ss.isDark
     
     }, {

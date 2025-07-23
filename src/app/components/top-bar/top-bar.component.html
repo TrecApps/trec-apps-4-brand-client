@@ -5,6 +5,7 @@
     [basicImageUrl]="'https://test.trecapps.com/Images-api/Images/profile/'"
     [items]="profileItemGroups"
     (onProfileItemClicked)="onProfilePanelSelect($event)"
+    [blankProfileImg]="'non-profile-mob.png'"
 >
     
     <app-brand-searcher (brandInfoSelected)="onBrandSelected($event)"></app-brand-searcher>
